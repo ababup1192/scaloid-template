@@ -8,7 +8,11 @@ scalaVersion := "2.11.1"
 
 platformTarget in Android := "android-18"
 
-proguardOptions in Android ++= Seq("-dontobfuscate", "-dontoptimize")
+proguardCache in Android ++= Seq(
+  ProguardCache("org.scaloid") % "org.scaloid"
+)
+
+proguardOptions in Android ++= Seq("-dontobfuscate", "-dontoptimize", "-dontwarn scala.collection.mutable.**")
 
 libraryDependencies += "org.scaloid" %% "scaloid" % "3.4-10"
 
